@@ -1,0 +1,80 @@
+<html>
+  <head>
+    <title>Learning Vue.js</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div id="app">
+      <section class="section-persons">
+        <div class="container">
+          <div v-if="persons.length === 0" class="row">
+            <div class="col-md-12 text-center">
+              <h3>No hay personas registradas</h3>
+            </div>
+          </div>
+          <div v-else class="row">
+            <div v-for="person in persons" class="col-md-3">
+              <div class="card">
+                <div class="card-body">
+                  <h5 class="card-title">
+                    {{person.name}}
+                  </h5>
+                  <h6 class="card-subtitle mb-2 text-muted">
+                    {{person.email}}
+                  </h6>
+                  <p class="card-text">
+                    {{person.about}}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="section-register">
+        <div class="container">
+          <div class="col-md-12">
+            <div v-if="errors.length > 0" class="alert alert-danger" role="alert">
+              <ul>
+                <li v-for="error in errors">{{error}}</li>
+              </ul>
+            </div>
+            <!-- form -->
+            <div class="form-group">
+              <label>Nombre completo</label>
+              <input
+                v-model="formdata.name"
+                class="form-control"
+                type="text">
+            </div>
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input
+                v-model="formdata.email"
+                class="form-control"
+                type="email">
+            </div>
+            <div class="form-group">
+              <label>Acerca de mi</label>
+              <small class="float-right">{{aboutLength}} caracteres</small>
+              <textarea
+                v-model="formdata.about"
+                class="form-control"
+                rows="5"></textarea>
+            </div>
+            <div class="form-group">
+              <button
+                @click.prevent="register"
+                class="btn btn-primary btn-block">Registrar</button>
+            </div>
+            <!-- /form -->
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+    <script src="js/main.js"></script>
+  </body>
+</html>
